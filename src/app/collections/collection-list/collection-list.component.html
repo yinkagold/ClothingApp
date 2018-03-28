@@ -4,6 +4,17 @@
     class="btn btn-success" 
     (click)="onNewCollection()">New Collection</button>
   </div>
+  <hr>
+  <!-- <div class="col-xs-12 col-sm-10 col-md-8">
+    <input type="text" [(ngModel)]="searchText" placeholder="search for  your collections">
+    <ul class= "list-group">
+      <li 
+        class="list-group-item"
+        *ngFor="let collection of collections | filter: filterString: 'name' | sort:''name"
+        [ngClass]="getNameClasses(collection)">
+      </li>
+    </ul>
+  </div> -->
 </div>
 <hr>
 <div class="row">

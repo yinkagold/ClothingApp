@@ -12,7 +12,7 @@ export class ShoppingListService {
     return this.designs.slice();
   }
 
-  getIngredient(index: number) {
+  getDesign(index: number) {
     return this.designs[index];
   }
 
@@ -22,9 +22,7 @@ export class ShoppingListService {
   }
 
   addDesigns(designs: Design[]) {
-    // for (let ingredient of ingredients) {
-    //   this.addIngredient(ingredient);
-    // }
+
     this.designs.push(...designs);
     this.designsChanged.next(this.designs.slice());
   }

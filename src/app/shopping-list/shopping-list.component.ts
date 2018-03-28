@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Design } from '../shared/design.model';
 import { ShoppingListService } from './shopping-list.service';
 
+
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -28,7 +29,8 @@ export class ShoppingListComponent implements OnInit {
   onEditItem(index: number) {
     this.slService.startedEditing.next(index);
   }
-
+  
+ 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

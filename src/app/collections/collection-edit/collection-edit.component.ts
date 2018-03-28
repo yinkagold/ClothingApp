@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { CollectionService } from '../collection.service';
 
+
 @Component({
   selector: 'app-collection-edit',
   templateUrl: './collection-edit.component.html',
@@ -16,6 +17,7 @@ export class CollectionEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private collectionService: CollectionService,
+      
               private router: Router) {
   }
 
@@ -31,35 +33,39 @@ export class CollectionEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
       this.collectionService.updateCollection(this.id, this.collectionForm.value);
     } else {
       this.collectionService.addCollection(this.collectionForm.value);
     }
     this.onCancel();
+
   }
 
-  onAddDesign() {
+  onAddSpecification() {
     (<FormArray>this.collectionForm.get('designs')).push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
-      
+        'size': new FormControl(null, Validators.required),
+        'amount': new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)
+        ])
       })
     );
   }
 
-  onDeleteDesign(index: number) {
+  onDeleteSpecification(index: number) {
     (<FormArray>this.collectionForm.get('designs')).removeAt(index);
   }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+  getControls() {
+    return (<FormArray>this. collectionForm.get('designs')).controls;
+  }
+
 
   private initForm() {
     let collectionName = '';
@@ -73,11 +79,15 @@ export class CollectionEditComponent implements OnInit {
       collectionImagePath = collection.imagePath;
       collectionDescription = collection.description;
       if (collection['designs']) {
-        for (let desings of collection.designs) {
+        for (let design of collection.designs) {
           collectionDesigns.push(
             new FormGroup({
-              'name': new FormControl(collection.name, Validators.required),
-            
+              'name': new FormControl(design.name, Validators.required),
+              'size': new FormControl(design.size, Validators.required),
+              'amount': new FormControl(design.amount, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ])
             })
           );
         }

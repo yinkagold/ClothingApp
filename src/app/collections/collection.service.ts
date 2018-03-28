@@ -5,6 +5,7 @@ import { Design } from '../shared/design.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs/Subject';
 
+
 @Injectable()
 export class CollectionService{
     collectionsChanged = new Subject<Collection[]>(); 
@@ -14,16 +15,42 @@ export class CollectionService{
           'T-Shirt',
             'Repping your Hero in Style',
             '/assets/images/tshirt5.jpg',
+            []
+        ),
+      
+        new Collection(
+            'Polo',
+              'Three color simple Polo',
+              '/assets/images/polo1.jpg',
+              []
+          ),
+          new Collection(
+            'Polo',
+              'Plain female Polo design',
+              '/assets/images/polo2.jpg',
+              []
+          ),
 
-            
-            [
-                
-                
-            ]
-        )
+          new Collection(
+            'Sweatshirt',
+              'Coloured sleeve sweatshirt',
+              '/assets/images/sweatshirt.jpg',
+              []
+          ),
+          new Collection(
+            'Birthday',
+              'September 25 rocks with me',
+              '/assets/images/bday.jpg',
+              []
+          ),
     ];
 
     constructor(private slService:ShoppingListService){}
+
+    setCollections(collections: Collection[]){
+        this.collections = collections;
+        this.collectionsChanged.next(this.collections.slice());
+    }
 
     getCollections(){
         return this.collections.slice();
