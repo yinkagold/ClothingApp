@@ -5,9 +5,9 @@
   <ul class="list-group">
     <a class="list-group-item"
     style="cursor: pointer"
-    *ngFor="let design of designs; let i = index"
+    *ngFor="let design of (shoppingListState | async).designs; let i = index"
     (click)="onEditItem(i)">
-    {{ design.name }}  {{ design.size }} ({{ design.amount }})
+    {{ design.name | uppercase }}  {{ design.size | uppercase }} ({{ design.amount }})
     </a>
   </ul>
   </div>

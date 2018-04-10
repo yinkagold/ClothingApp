@@ -15,3 +15,20 @@ import { AuthRoutingModule } from './auth-routing.module';
     ]
 })
 export class AuthModule{}
+
+// import { FormioAuth, FormioAuthRoutes } from 'angular-formio/auth';
+// import { RouterModule } from '@angular/router/src/router_module';
+// import { CommonModule } from '@angular/common';
+// import { NgModule } from '@angular/core';
+
+// @NgModule({
+//     declarations: [
+     
+//     ],
+//     imports: [
+// 		CommonModule,
+//         FormioAuth,
+//         RouterModule.forChild(FormioAuthRoutes())
+//     ]
+// })
+// export class AuthModule{}

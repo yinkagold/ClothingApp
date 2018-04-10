@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 
-import { Collection } from '../collection.model';
-import { CollectionService } from '../collection.service';
-
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
+import * as fromCollection from '../store/collection.reducers';
+import * as CollectionActions from '../store/collection.actions';
 
 @Component({
   selector: 'app-collection-detail',
@@ -11,36 +14,44 @@ import { CollectionService } from '../collection.service';
   styleUrls: ['./collection-detail.component.css']
 })
 export class CollectionDetailComponent implements OnInit {
-  collection: Collection;
+  collectionState: Observable<fromCollection.State>;
   id: number;
-  constructor(private collectionService: CollectionService,
-    private route: ActivatedRoute,
-    private router: Router) {
-}
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private store: Store<fromCollection.FeatureState>) {
+  }
 
   ngOnInit() {
-  this.route.params
-  .subscribe(
-  (params: Params) => {
-  this.id = +params['id'];
-  this.collection = this.collectionService.getCollection(this.id);
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.collectionState = this.store.select('collections');
+        }
+      );
   }
-);
-}
 
   onAddToShoppingList() {
-  this.collectionService.addDesignToShoppingList(this.collection.designs);
+    this.store.select('collections')
+      .take(1)
+      .subscribe((collectionState: fromCollection.State) => {
+        this.store.dispatch(new ShoppingListActions.AddDesigns(
+          collectionState.collections[this.id].designs)
+        );
+      });
+
   }
 
   onEditCollection() {
-  this.router.navigate(['edit'], {relativeTo: this.route});
-  // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], {relativeTo: this.route});
+    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
   onDeleteCollection() {
-  this.collectionService.deleteCollection(this.id);
-  this.router.navigate(['/collections']);
-  this.router.navigate(['/delete'], {relativeTo: this.route});
+    this.router.navigate(['/collections']);
+    this.store.dispatch(new CollectionActions.DeleteCollection(this.id));
+   
   }
 
 }

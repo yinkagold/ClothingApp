@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-xs-12">
     <img
-      [src]="collection.imagePath"
-      alt="{{ collection.name }}"
+      [src]="(collectionState | async).collections[id].imagePath"
+      alt="{{ (collectionState | async).collections[id].name }}"
       class="img-responsive"
       style="max-height: 300px;">
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{ collection.name }}</h1>
+    <h1>{{ (collectionState | async).collections[id].name }}</h1>
   </div>
 </div>
 <div class="row">
@@ -20,19 +20,19 @@
       <button
         type="button"
         class="btn btn-primary dropdown-toggle">
-        Manage Collection <span class="caret"></span>
+        Manage collection <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
         <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
-        <li><a style="cursor: pointer;" (click)="onEditCollection()">Edit Collection</a></li>
-        <li><a style="cursor: pointer;" (click)="onDeleteCollection()">Delete Collection</a></li>
+        <li><a style="cursor: pointer;" (click)="onEditCollection()">Edit collection</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeleteCollection()">Delete collection</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    {{ collection.description }}
+    {{ (collectionState | async).collections[id].description }}
   </div>
 </div>
 <div class="row">
@@ -40,8 +40,8 @@
     <ul class="list-group">
       <li
         class="list-group-item"
-        *ngFor="let design of collection.designs">
-        {{ design.name }}  {{ design.size }}  {{ design.amount }} 
+        *ngFor="let design of (collectionState | async).collections[id].designs">
+        {{ design.name }} {{design.size}} {{ design.amount }}
       </li>
     </ul>
   </div>
