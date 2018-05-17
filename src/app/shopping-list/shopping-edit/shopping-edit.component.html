@@ -1,31 +1,24 @@
 <div class="container">
-
     <div class="row">
         <div class="col-xs-12">
-          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <form #shoppingForm="ngForm" (ngSubmit)="onSubmit(shoppingForm)">
+              <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="shoppingService.selectedDesign.$key">  
             <div class="row">
                 <div class="col-sm-3 form-group">
                     <label for="name">Name</label>
                     <input
-                      type="text"
-                      id="name"
                       class="form-control"
-                      name="name"
-                      ngModel
-                      required
-                    >
+                      name="name" #name="ngModel" [(ngModel)] = "shoppingService.selectedDesign.name" required>
                   </div>
               <div class="col-sm-3 form-group">
                 <label for="size">Size</label>
                 <input
-                  type="text"
-                  id="size"
+                  
                   class="form-control"
                   placeholder="X,S,M,L,XL"
                   name="size"
-                  ngModel
-                  required
-                >
+                  #size="ngModel" [(ngModel)] = "shoppingService.selectedDesign.size"
+                  required>
               </div>
               <div class="col-sm-2 form-group">
                 <label for="amount">Amount</label>
@@ -34,60 +27,17 @@
                   id="amount"
                   class="form-control"
                   name="amount"
-                  ngModel
+                  #amount="ngModel" [(ngModel)] = "shoppingService.selectedDesign.amount"
                   required
-                  pattern="^[1-9]+[0-9]*$"
-                >
+                  pattern="^[1-9]+[0-9]*$">
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <button
-                  class="btn btn-success"
-                  type="submit"
-                  [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add' }}</button>
-                <button
-                  class="btn btn-danger"
-                  type="button"
-                  (click)="onDelete()"
-                  *ngIf="editMode">Delete</button>
-                <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
-              </div>
-            </div>
+           <div class="form-group">
+            <button class="btn btn-success" type="submit" [disabled] ="!shoppingForm.valid"><i class="fa fa-floppy-o"></i> Submit </button>
+            <button class="btn btn-primary" type="button" (click)="resetForm(shoppingForm)" ><i class="fa fa-repeat"></i> Reset </button>
+           </div>
           </form>
         </div>
       </div>
-    <!-- <div class="jumbotron">
-        <div class='container'>
-            <div class="row">
-                <div class="col-12">
-                    <carousel class='text-center'>
-                        <slide>
-                          <img class='img-main-carousel' src="assets/images/sport1.jpg" alt="First slide">
-                          <div class="carousel-caption d-none d-md-block">
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                          </div>
-                        </slide>
-                        <slide>
-                          <img class='img-main-carousel' src="assets/images/sport2.jpg"alt="Second slide">
-                          <div class="carousel-caption d-none d-md-block">
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                        </slide>
-                        <slide>
-                          <img class='img-main-carousel' src="assets/images/sport3.jpg" alt="Third slide">
-                          <div class="carousel-caption d-none d-md-block">
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                          </div>
-                        </slide>
-                      </carousel>
-                    </div>
-            </div>
-        </div>
-    </div> -->
-    
-</div>
 
+     

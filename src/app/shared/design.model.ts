@@ -1,3 +1,13 @@
+
+
 export class Design {
-    constructor(public name: string, public size: string, public amount: number){}
+    $key: string;
+    name: string;
+    size: string;
+    amount: number;
+
+   //constructor( name: string, size: string, amount: number){ }
+
+  
 }
+

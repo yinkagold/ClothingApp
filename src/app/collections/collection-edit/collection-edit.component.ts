@@ -2,23 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { flyInOut, visibility, expand } from '../../animations/app.animation';
 
 import * as CollectionActions from '../store/collection.actions';
 import * as fromCollection from '../store/collection.reducers';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-collection-edit',
   templateUrl: './collection-edit.component.html',
-  styleUrls: ['./collection-edit.component.css']
+  styleUrls: ['./collection-edit.component.css'],
+  host:{
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+	animations: [
+		flyInOut(),
+		visibility(),
+		expand()
+  ]
 })
 export class CollectionEditComponent implements OnInit {
   id: number;
   editMode = false;
   collectionForm: FormGroup;
+  selectedFile = null;
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private store: Store<fromCollection.FeatureState>) {
+              private store: Store<fromCollection.FeatureState>,
+              private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -33,11 +47,6 @@ export class CollectionEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // const newcollection = new collection(
-    //   this.collectionForm.value['name'],
-    //   this.collectionForm.value['description'],
-    //   this.collectionForm.value['imagePath'],
-    //   this.collectionForm.value['designs']);
     if (this.editMode) {
       this.store.dispatch(new CollectionActions.UpdateCollection({
         index: this.id,
@@ -113,4 +122,11 @@ export class CollectionEditComponent implements OnInit {
     return (<FormArray>this.collectionForm.get('designs')).controls;
   }
 
+  onFileSelected(event){
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload(){
+    this.http.post
+  }
 }

@@ -4,12 +4,24 @@
   </div>
 </div>
 <hr>
+
+<!-- <div *ngIf="collections">
+  <ul *ngFor = "let collection of collections"  [routerLink] = "['id']">
+    <li >
+      <img src="{{BaseURL + collection.imagePath}}" alt="{{collection.name}}">
+    </li>
+  </ul>
+
+</div> -->
 <div class="row">
   <div class="col-xs-12">
     <app-collection-item
-      *ngFor="let collectionEl of (collectionState | async).collections; let i = index"
-      [collection]="collectionEl"
-      [index]="i"></app-collection-item>
+    *ngFor="let collectionEl of (collectionState | async).collections; let i = index"
+    [collection]="collectionEl"
+    [index]="i" >
+    </app-collection-item>
   </div>
 </div>
+
+
 

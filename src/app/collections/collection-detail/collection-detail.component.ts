@@ -2,17 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { flyInOut, visibility, expand } from '../../animations/app.animation';
 import 'rxjs/add/operator/take';
 
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromCollection from '../store/collection.reducers';
 import * as CollectionActions from '../store/collection.actions';
 
+
+
 @Component({
   selector: 'app-collection-detail',
   templateUrl: './collection-detail.component.html',
-  styleUrls: ['./collection-detail.component.css']
+  styleUrls: ['./collection-detail.component.css'],
+  host:{
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+	animations: [
+		flyInOut(),
+		visibility(),
+		expand()
+  ]
+
 })
+
 export class CollectionDetailComponent implements OnInit {
   collectionState: Observable<fromCollection.State>;
   id: number;
@@ -49,9 +63,8 @@ export class CollectionDetailComponent implements OnInit {
   }
 
   onDeleteCollection() {
-    this.router.navigate(['/collections']);
     this.store.dispatch(new CollectionActions.DeleteCollection(this.id));
-   
+    this.router.navigate(['/collections']);
   }
 
 }

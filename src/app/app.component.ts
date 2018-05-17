@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     apiKey: "AIzaSyDSWsIym3uRm4pIu71esgdGlYuriePEy-M",
     authDomain: "myclothingapp-http.firebaseapp.com",
    });
+
  }
 
  onNavigate(feature: string) {

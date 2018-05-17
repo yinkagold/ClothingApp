@@ -11,7 +11,7 @@ const collectionsRoutes: Routes = [
   { path: '', component: CollectionsComponent, children: [
     { path: '', component: CollectionStartComponent },
     { path: 'new', component: CollectionEditComponent, canActivate: [AuthGuard] },
-    { path: ':id', component: CollectionDetailComponent, canActivate: [AuthGuard] },
+    { path: ':id', component: CollectionDetailComponent },
     { path: ':id/edit', component: CollectionEditComponent, canActivate: [AuthGuard] },
   ] },
 ];

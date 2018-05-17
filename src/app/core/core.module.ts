@@ -18,12 +18,9 @@ import { AuthGuard } from '../auth/auth-guard.service';
 import { AboutComponent } from './about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackService } from '../services/feedback.services';
-
-import { baseURL } from '../shared/baseurl';
-import { ProcessHTTPMsgService } from '../services/process-httpmsg.service';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { RestangularConfigFactory } from '../shared/restConfig';
-import { LeaderService } from '../services/leader.service';
+import { FeedbackListComponent } from './contact/feedback-list/feedback-list.component';
+import { ContactsComponent } from './contact/contacts/contacts.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -33,24 +30,26 @@ import { LeaderService } from '../services/leader.service';
         HeaderComponent,
         HomeComponent,
         ContactComponent,
-        AboutComponent
+        AboutComponent,
+        FeedbackListComponent,
+        ContactsComponent,
+     
     ],
     imports: [
         SharedModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        RestangularModule.forRoot(RestangularConfigFactory),
-        FormsModule, ReactiveFormsModule
+        FormsModule, ReactiveFormsModule,
+        CarouselModule.forRoot()
     
     ],
     exports: [
         AppRoutingModule,
         HeaderComponent
     ], providers: [
-       AuthGuard,FeedbackService, LeaderService,
+       AuthGuard,FeedbackService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true},
-        {provide: 'BaseURL',   useValue: baseURL},ProcessHTTPMsgService,
         {provide: APP_BASE_HREF, useValue : '/' }]
 })
 export class CoreModule{}

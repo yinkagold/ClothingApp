@@ -4,10 +4,13 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Store } from '@ngrx/store';
+import { Action } from "@ngrx/store";
 
 import * as CollectionActions from '../store/collection.actions';
 import { Collection } from '../collection.model';
 import * as fromCollection from '../store/collection.reducers';
+import { Observable } from 'rxjs/Observable';
+
 
 
 @Injectable()
@@ -45,6 +48,7 @@ export class CollectionEffects {
       return this.httpClient.request(req);
     });
 
+  
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
               private store: Store<fromCollection.FeatureState>) {}

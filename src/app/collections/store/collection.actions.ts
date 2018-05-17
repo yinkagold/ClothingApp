@@ -9,6 +9,10 @@ export const DELETE_COLLECTION = 'DELETE_COLLECTION';
 export const STORE_COLLECTIONS = 'STORE_COLLECTIONS';
 export const FETCH_COLLECTIONS = 'FETCH_COLLECTIONS';
 
+export const LOAD_COLLECTIONS = ' LOAD_COLLECTIONS';
+export const LOAD_COLLECTIONS_SUCCESS = 'LOAD_COLLECTIONS_SUCCESS';
+
+
 
 export class SetCollections implements Action {
   readonly type = SET_COLLECTIONS;
@@ -42,6 +46,14 @@ export class FetchCollections implements Action {
   readonly type = FETCH_COLLECTIONS;
 }
 
+export class LoadCollections implements Action {
+  readonly type = LOAD_COLLECTIONS;
+}
+
+export class LoadCollectionsSuccess implements Action {
+  readonly type = LOAD_COLLECTIONS_SUCCESS;
+}
+
 
 
 export type CollectionActions = SetCollections |
@@ -49,4 +61,6 @@ export type CollectionActions = SetCollections |
   UpdateCollection |
   DeleteCollection |
   StoreCollections |
-  FetchCollections ;
+  FetchCollections |
+  LoadCollections|
+  LoadCollectionsSuccess;

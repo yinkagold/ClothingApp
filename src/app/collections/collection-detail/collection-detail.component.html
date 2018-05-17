@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-xs-12">
     <img
@@ -35,6 +36,7 @@
     {{ (collectionState | async).collections[id].description }}
   </div>
 </div>
+<!-- <form #detailForm="ngForm" (ngSubmit)="onSubmit(deatilForm)"> -->
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
@@ -44,5 +46,7 @@
         {{ design.name }} {{design.size}} {{ design.amount }}
       </li>
     </ul>
+    <!-- <button class ="btn btn-default" type="submit">To Shopping List</button> -->
   </div>
 </div>
+<!-- </form> -->

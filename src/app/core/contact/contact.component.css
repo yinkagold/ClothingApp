@@ -1,22 +1,4 @@
 .container {
-    margin-top: 30px;
-    width: 100%;
-  }
-  
-  input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
-
-  .jumbotron {
-    background: rgb(150, 192, 224);
-    color: #FFF;
-    border-radius: 0px;
-    }
-    .jumbotron-sm { padding-top: 14px;
-    padding-bottom: 14px; }
-    .jumbotron small {
-    color: #FFF;
-    }
-    .h1 small {
-    font-size: 24px;
-    }
+  margin-top: 30px;
+  width: 100%;
+}

@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
+import { Routes, PreloadAllModules } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, appRoutes } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
@@ -18,19 +19,22 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AuthEffects } from './auth/store/auth.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ToastrModule} from 'ngx-toastr';
 
 
+import { RouterModule } from '@angular/router/src/router_module';
+import { FooterComponent } from './footer/footer.component';
 
-import { baseURL } from './shared/baseurl';
-import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { RestangularConfigFactory } from './shared/restConfig';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-universal-app'}),
@@ -45,12 +49,11 @@ import { RestangularConfigFactory } from './shared/restConfig';
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    RestangularModule.forRoot(RestangularConfigFactory)
-    
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'angularfs'),
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot() 
   ],
 
-  providers : [  {provide: 'BaseURL',   useValue: baseURL},ProcessHTTPMsgService],
- 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

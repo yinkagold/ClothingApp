@@ -3,6 +3,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { AuthRoutingModule } from './auth-routing.module';
     ],
     imports: [
         FormsModule, 
-        AuthRoutingModule
+        AuthRoutingModule,
+        CarouselModule.forRoot()
     ]
 })
 export class AuthModule{}

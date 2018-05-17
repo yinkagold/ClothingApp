@@ -1,4 +1,5 @@
 import { Component,  OnInit  } from '@angular/core';
+import { flyInOut, visibility, expand } from '../../animations/app.animation';
 import { Response } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable'
@@ -11,7 +12,17 @@ import * as CollectionActions from '../../collections/store/collection.actions'
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+  host:{
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+	animations: [
+		flyInOut(),
+		visibility(),
+		expand()
+  ]
 })
 export class HeaderComponent implements OnInit {
 

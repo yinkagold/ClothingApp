@@ -54,6 +54,16 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">File Upload</label>
+            <input
+              type="file" (change)="onFileSelected($event)">
+              <button type="button" ></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12" formArrayName="designs">
           <div
             class="row"

@@ -1,8 +1,10 @@
   export class Feedback {
+	$key: string;
 	name: string;
 	phone: number;
 	email: string;
-	feedback: string;
+	address: string;
+  message: string;
   };
   
   

@@ -3,6 +3,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CollectionsComponent } from './collections.component';
 import { CollectionStartComponent } from './collection-start/collection-start.component';
@@ -14,7 +16,8 @@ import { CollectionsRoutingModule } from './collections-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { collectionReducer } from './store/collection.reducers';
 import { CollectionEffects } from './store/collection.effects';
-import { CollectionService } from '../services/collection.service';
+import { ShoppingService } from '../services/shopping.service';
+
 
 
 
@@ -25,17 +28,19 @@ import { CollectionService } from '../services/collection.service';
     CollectionListComponent,
     CollectionEditComponent,
     CollectionDetailComponent,
-    CollectionItemComponent
+    CollectionItemComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CollectionsRoutingModule,
     SharedModule,
+    HttpModule,
     StoreModule.forFeature('collections', collectionReducer),
     EffectsModule.forFeature([CollectionEffects]),
    
+   
   ],
-  providers: [CollectionService ]
+  providers: [ ShoppingService ]
 })
 export class CollectionsModule {}

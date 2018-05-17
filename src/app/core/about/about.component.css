@@ -1,3 +1,17 @@
-.container{
-    width: 100%´;
+.container {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+    .jumbotron-sm { padding-top: 14px;
+    padding-bottom: 14px;
+ }
+p{
+    font-style: initial;
+    font-family: serif;
+    font-size: 20px;
+    text-align: justify
+}
+small{
+    font-size: 20px
 }

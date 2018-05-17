@@ -1,0 +1,16 @@
+<h6 class="text-center">Shopping List</h6><br/>
+<table class="table table-sm table-hover">
+  <tr *ngFor="let design of shoppingsList">
+    <td>{{ design.name}}</td>
+    <td>{{ design.size}}</td>
+    <td>{{ design.amount}}</td>  
+    <td>
+      <a class="btn"(click) ="onEdit(design)">
+        <i class="fa fa-pencil-square-o"></i>
+        <a class="btn" (click)="onDelete(design.$key)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </a>
+    </td>
+  </tr>
+</table>

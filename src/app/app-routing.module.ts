@@ -10,13 +10,12 @@ import { AuthGuard } from './auth/auth-guard.service';
 
 
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
   { path: 'collections', loadChildren: './collections/collections.module#CollectionsModule'},
-  { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard] },
- 
+  { path: 'shopping-list', component: ShoppingListComponent , canActivate: [AuthGuard]},
 ];
 
 @NgModule({
